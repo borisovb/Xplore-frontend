@@ -1,8 +1,5 @@
 <template>
   <div class="w-full">
-    <div class="bg-gray-600 w-full h-16">
-      <!-- Navbar -->
-    </div>
     <div class="flex mb-4 my-10">
       <div class="w-2/3">
         <div class="mx-16">
