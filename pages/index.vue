@@ -25,43 +25,53 @@
     </div>
 
     <div class="text-3xl font-normal mx-10">New & Trending</div>
-    <div class="h-56 grid grid-cols-4 gap-4 mx-10 my-5">
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-    </div>
+    <GameCardComponent v-bind:game-data="gameData" />
+
     <div class="text-3xl font-normal mx-10">Recommendations</div>
-    <div class="h-56 grid grid-cols-4 gap-4 mx-10 my-5">
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-    </div>
+    <GameCardComponent v-bind:game-data="gameData" />
+
     <div class="text-3xl font-normal mx-10">Best deals</div>
-    <div class="h-56 grid grid-cols-4 gap-4 mx-10 my-5">
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-    </div>
+    <GameCardComponent v-bind:game-data="gameData" />
   </div>
 </template>
 
 <script>
 import _ from 'lodash'
+import GameCardComponent from '../components/GameCardComponent'
 export default {
+  components: { GameCardComponent },
   data() {
     return {
+      gameData: [
+        {
+          id: 1,
+          name: 'Need For Speed Heat',
+          imgurl: 'needforspeedheat.png',
+          platform: ['fab fa-playstation', 'fab fa-xbox', 'fab fa-windows']
+        },
+        {
+          id: 2,
+          name: 'Battlefield 5',
+          imgurl: 'battlefield-5.png',
+          platform: ['fab fa-playstation', 'fab fa-xbox', 'fab fa-windows']
+        },
+        {
+          id: 3,
+          name: 'Halo 5',
+          imgurl: 'halo-5.png',
+          platform: ['fab fa-xbox']
+        }
+      ],
       textValues: [
-        'Xbox',
-        'Playstation',
-        'PC',
-        'Mac',
-        'Linux',
-        'Steam',
-        'Epic Games Store',
-        'GOG.com'
+        'Test',
+        'Xbox'
+        // 'Playstation',
+        // 'PC',
+        // 'Mac',
+        // 'Linux',
+        // 'Steam',
+        // 'Epic Games Store',
+        // 'GOG.com'
       ],
       textValue: null,
       timeoutText: null

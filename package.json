@@ -5,6 +5,7 @@
   "author": "Borisov,Boris",
   "private": true,
   "scripts": {
+    "serve": "serve",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
