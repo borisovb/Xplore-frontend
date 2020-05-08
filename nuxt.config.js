@@ -42,7 +42,8 @@ export default {
    */
   plugins: [
     // Doc: https://vuelidate.js.org/#sub-basic-form
-    { src: '~plugins/vuelidate', ssr: false }
+    { src: '~plugins/vuelidate', ssr: false },
+    { src: '~plugins/fontawesome', ssr: false },
   ],
   /*
    ** Nuxt.js dev-modules
