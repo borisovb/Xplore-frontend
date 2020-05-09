@@ -26,6 +26,7 @@
         </svg>
       </button>
     </div>
+
     <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
       <div class="text-sm lg:flex-grow">
         <a
@@ -47,6 +48,16 @@
           Platforms
         </a>
       </div>
+
+      <div class="searchBox px-3">
+        <input class="searchInput" type="text" name="" placeholder="Search" />
+        <button class="searchButton" href="#">
+          <i class="material-icons">
+            search
+          </i>
+        </button>
+      </div>
+
       <div>
         <a
           href="#"
@@ -64,3 +75,59 @@
     </div>
   </nav>
 </template>
+
+<style scoped>
+searchBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background: #2f3640;
+  height: 40px;
+  border-radius: 40px;
+  padding: 10px;
+}
+
+.searchBox:hover > .searchInput {
+  width: 240px;
+  padding: 0 6px;
+}
+
+.searchBox:hover > .searchButton {
+  background: white;
+  color: #2f3640;
+}
+
+.searchButton {
+  color: white;
+  float: right;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #2f3640;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+.searchInput {
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: white;
+  font-size: 16px;
+  transition: 0.4s;
+  line-height: 40px;
+  width: 0px;
+}
+
+@media screen and (max-width: 620px) {
+  .searchBox:hover > .searchInput {
+    width: 150px;
+    padding: 0 6px;
+  }
+}
+</style>

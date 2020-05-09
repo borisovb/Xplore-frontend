@@ -22,26 +22,13 @@
     </div>
 
     <div class="text-3xl font-normal mx-10">New & Trending</div>
-    <div class="h-56 grid grid-cols-4 gap-4 mx-10 my-5">
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-    </div>
+    <GameCardComponent :game-data="gameData" />
+
     <div class="text-3xl font-normal mx-10">Recommendations</div>
-    <div class="h-56 grid grid-cols-4 gap-4 mx-10 my-5">
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-    </div>
+    <GameCardComponent :game-data="gameData" />
+
     <div class="text-3xl font-normal mx-10">Best deals</div>
-    <div class="h-56 grid grid-cols-4 gap-4 mx-10 my-5">
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-      <div class="w-full h-full bg-gray-600"></div>
-    </div>
+    <GameCardComponent :game-data="gameData" />
   </div>
 </template>
 
