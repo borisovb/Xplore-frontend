@@ -30,7 +30,7 @@
     <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
       <div class="text-sm lg:flex-grow">
         <a
-          href=""
+          href="/"
           class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
         >
           Home
@@ -60,7 +60,7 @@
 
       <div>
         <a
-          href="#"
+          href="signup"
           class="rounded-full inline-block text-sm px-4 py-2 mr-3 leading-none border rounded text-white border-teal hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
           >Sign Up</a
         >

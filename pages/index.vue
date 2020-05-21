@@ -22,13 +22,13 @@
     </div>
 
     <div class="text-3xl font-normal mx-10">New & Trending</div>
-    <GameCardComponent v-bind:game-data="gameData" />
+    <GameCardComponent :game-data="gameData" />
 
     <div class="text-3xl font-normal mx-10">Recommendations</div>
-    <GameCardComponent v-bind:game-data="gameData" />
+    <GameCardComponent :game-data="gameData" />
 
     <div class="text-3xl font-normal mx-10">Best deals</div>
-    <GameCardComponent v-bind:game-data="gameData" />
+    <GameCardComponent :game-data="gameData" />
   </div>
 </template>
 
