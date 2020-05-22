@@ -60,15 +60,14 @@ export default {
         }
       ],
       textValues: [
-        'Test',
-        'Xbox'
-        // 'Playstation',
-        // 'PC',
-        // 'Mac',
-        // 'Linux',
-        // 'Steam',
-        // 'Epic Games Store',
-        // 'GOG.com'
+        'Xbox',
+        'Playstation',
+        'PC',
+        'Mac',
+        'Linux',
+        'Steam',
+        'Epic Games Store',
+        'GOG.com'
       ],
       textValue: null,
       timeoutText: null

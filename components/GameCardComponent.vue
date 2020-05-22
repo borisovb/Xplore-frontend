@@ -4,7 +4,7 @@
       <div
         id="gameCard"
         class="w-full h-full gameCard"
-        v-for="game of gameData"
+        v-for="game in gameData"
         v-bind:key="game.id"
         v-bind:style="{
           background:
@@ -16,12 +16,16 @@
         }"
       >
         <div class="gameCardInfo">
-          <h3>{{ game.name }}</h3>
-          <div class="flex">
-            <div v-for="platform of game.platform" :key="platform">
-              <i id="platformLogo" v-bind:class="[platform]" />
+          <router-link
+            :to="{ name: 'game_details', params: { name: game.name } }"
+          >
+            <h3 id="game_name">{{ game.name }}</h3>
+            <div class="flex">
+              <div v-for="platform of game.platform" :key="platform">
+                <i id="platformLogo" v-bind:class="[platform]" />
+              </div>
             </div>
-          </div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -31,7 +35,8 @@
 <script>
 export default {
   name: 'GameCardComponent',
-  props: ['gameData']
+  props: ['gameData'],
+  methods: {}
 }
 </script>
 
