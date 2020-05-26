@@ -32,7 +32,13 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: false,
+  loadingIndicator: {
+    name: 'three-bounce',
+    color: '#58A4B0',
+    background: '#373f51'
+  },
+
   /*
    ** Global CSS
    */
@@ -42,6 +48,7 @@ export default {
    */
   plugins: [
     { src: '~plugins/global-components', ssr: false },
+    { src: '~plugins/repository', ssr: false },
     // Doc: https://vuelidate.js.org/#sub-basic-form
     { src: '~plugins/vuelidate', ssr: false },
     { src: '~plugins/fontawesome', ssr: false },
@@ -73,7 +80,7 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: { baseURL: 'https://xplore-backend-staging.herokuapp.com' },
   /*
    ** Build configuration
    */

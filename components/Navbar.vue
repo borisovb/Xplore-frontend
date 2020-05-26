@@ -1,11 +1,13 @@
 <template>
-  <div>
+  <div class="gradient">
     <nav class="grid md:grid-cols-3 grid-cols-2 h-16 w-full my-3">
       <div class="pl-5 md:pl-12 max-w-full max-h-full">
-        <img
-          class="object-contain h-14 max-w-full max-h-full mt-1"
-          src="@/static/xplore-white.png"
-        />
+        <a href="/">
+          <img
+            class="object-contain h-14 max-w-full max-h-full mt-1"
+            src="@/static/xplore-white.png"
+          />
+        </a>
       </div>
       <div class="md:flex content-center flex-wrap hidden">
         <div class="relative mx-auto w-full text-gray-800 max-h-full">
@@ -45,4 +47,13 @@
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.gradient {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.40379901960784315) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+</style>

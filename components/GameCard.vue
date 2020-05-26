@@ -3,7 +3,7 @@
     <div
       class="w-full gameCard bg-gray-500 rounded-t-lg shadow-md"
       :style="{
-        background: ' url(\'' + game.imgurl + '\')',
+        background: ' url(\'' + game.background_image + '\')',
         backgroundSize: 'cover',
         height: '60%'
       }"
@@ -15,7 +15,7 @@
       <div class="ml-5 w-full">
         <div>
           <i
-            v-for="platform of game.platform"
+            v-for="platform of game.platforms"
             :key="platform"
             class="text-sm mr-2"
             :class="[platform]"
@@ -24,9 +24,7 @@
         <div class="text-xl">{{ game.name }}</div>
         <div class="flex w-full my-2">
           <Btn> <i class="fas fa-plus"></i> Favorite </Btn>
-          <Btn highlighted class="p-2 ml-auto mr-5">
-            <i class="fas fa-euro-sign"></i> 22.99
-          </Btn>
+          <Btn class="p-2 mx-2"> <i class="fas fa-gift"></i> Wishlist </Btn>
         </div>
       </div>
     </div>

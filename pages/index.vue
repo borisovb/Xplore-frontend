@@ -24,55 +24,24 @@
     </div>
 
     <div class="text-3xl font-normal mx-10">New & Trending</div>
-    <GameCardsSlider :games="gameData" />
+    <GameCardsSlider :games="trending" />
 
     <div class="text-3xl font-normal mx-10">Recommendations</div>
-    <GameCardsSlider :games="gameData" />
+    <GameCardsSlider :games="recommended" />
 
-    <div class="text-3xl font-normal mx-10">Best deals</div>
-    <GameCardsSlider :games="gameData" />
+    <!-- <div class="text-3xl font-normal mx-10">Best deals</div>
+    <GameCardsSlider :games="gameData" /> -->
   </div>
 </template>
 
 <script>
 import _ from 'lodash'
+import { mapState, mapActions } from 'vuex'
 import GameCardsSlider from '../components/GameCardsSlider'
 export default {
   components: { GameCardsSlider },
   data() {
     return {
-      gameData: [
-        {
-          id: 1,
-          name: 'Need For Speed Heat',
-          imgurl: 'needforspeedheat.png',
-          platform: ['fab fa-playstation', 'fab fa-xbox', 'fab fa-windows']
-        },
-        {
-          id: 2,
-          name: 'Battlefield 5',
-          imgurl: 'battlefield-5.png',
-          platform: ['fab fa-playstation', 'fab fa-xbox', 'fab fa-windows']
-        },
-        {
-          id: 3,
-          name: 'Halo 5',
-          imgurl: 'halo-5.png',
-          platform: ['fab fa-xbox']
-        },
-        {
-          id: 4,
-          name: 'Battlefield 5',
-          imgurl: 'battlefield-5.png',
-          platform: ['fab fa-playstation', 'fab fa-xbox', 'fab fa-windows']
-        },
-        {
-          id: 5,
-          name: 'Battlefield 5',
-          imgurl: 'battlefield-5.png',
-          platform: ['fab fa-playstation', 'fab fa-xbox', 'fab fa-windows']
-        }
-      ],
       textValues: [
         'Xbox',
         'Playstation',
@@ -87,13 +56,18 @@ export default {
       timeoutText: null
     }
   },
+  computed: {
+    ...mapState('games', ['trending', 'recommended'])
+  },
   mounted() {
     this.changeText()
+    this.loadGames()
   },
   destroyed() {
     this.timeoutText = null
   },
   methods: {
+    ...mapActions('games', ['loadGames']),
     changeText() {
       this.textValue = _.sample(this.textValues)
       this.timeoutText = setTimeout(this.changeText, 3500)
