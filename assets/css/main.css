@@ -3,3 +3,15 @@ body {
     font-family: 'Lato', 'Roboto', 'Arial';
     color: #FFF;
 }
+.bg-input {
+background-color: #D8DBE2;
+}
+.bg-main {
+    background-color: #373f51;
+}
+.bg-sec {
+    background-color: #1B1B1E;
+}
+.bg-highlight {
+    background-color: #58A4B0;
+}

@@ -16,7 +16,7 @@ export default {
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/xplore-grey.png' },
       {
         rel: 'stylesheet',
         href:
@@ -41,9 +41,12 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    { src: '~plugins/global-components', ssr: false },
     // Doc: https://vuelidate.js.org/#sub-basic-form
     { src: '~plugins/vuelidate', ssr: false },
     { src: '~plugins/fontawesome', ssr: false },
+    // Doc: https://github.com/surmon-china/vue-awesome-swiper
+    { src: '~plugins/vue-swiper', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules

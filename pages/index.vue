@@ -1,42 +1,44 @@
 <template>
   <div class="w-full">
-    <div class="flex mb-4 my-10">
-      <div class="w-2/3">
-        <div class="mx-16">
-          <div class="text-5xl font-normal">Xplore your gaming interests</div>
-          <span class="text-3xl font-light"
+    <div class="grid md:grid-cols-3 mb-4 my-10">
+      <div class="flex content-center flex-wrap mx-5 md:ml-10 md:col-span-2">
+        <div class="mx-6 md:mx-16">
+          <div class="text-3xl md:text-5xl font-normal">
+            Xplore your gaming interests
+          </div>
+          <span class="text-xl md:text-3xl font-light"
             >Find amazing games avaiable on
           </span>
           <transition name="slide-fade" mode="out-in">
-            <span :key="textValue" class="text-3xl font-bold">
+            <span :key="textValue" class="text-xl md:text-3xl font-bold">
               {{ textValue }}</span
             >
           </transition>
         </div>
       </div>
-      <div class="w-1/3">
-        <div class="w-1/2">
-          <img class="p-1" src="~static/gamepad.png" />
-        </div>
+      <div
+        class="flex content-center justify-center md:justify-end flex-wrap p-12 md:pr-10 md:max-w-xl max-w-md"
+      >
+        <img class="p-1" src="~static/gamepad.png" />
       </div>
     </div>
 
     <div class="text-3xl font-normal mx-10">New & Trending</div>
-    <GameCardComponent :game-data="gameData" />
+    <GameCardsSlider :games="gameData" />
 
     <div class="text-3xl font-normal mx-10">Recommendations</div>
-    <GameCardComponent :game-data="gameData" />
+    <GameCardsSlider :games="gameData" />
 
     <div class="text-3xl font-normal mx-10">Best deals</div>
-    <GameCardComponent :game-data="gameData" />
+    <GameCardsSlider :games="gameData" />
   </div>
 </template>
 
 <script>
 import _ from 'lodash'
-import GameCardComponent from '../components/GameCardComponent'
+import GameCardsSlider from '../components/GameCardsSlider'
 export default {
-  components: { GameCardComponent },
+  components: { GameCardsSlider },
   data() {
     return {
       gameData: [
@@ -57,18 +59,29 @@ export default {
           name: 'Halo 5',
           imgurl: 'halo-5.png',
           platform: ['fab fa-xbox']
+        },
+        {
+          id: 4,
+          name: 'Battlefield 5',
+          imgurl: 'battlefield-5.png',
+          platform: ['fab fa-playstation', 'fab fa-xbox', 'fab fa-windows']
+        },
+        {
+          id: 5,
+          name: 'Battlefield 5',
+          imgurl: 'battlefield-5.png',
+          platform: ['fab fa-playstation', 'fab fa-xbox', 'fab fa-windows']
         }
       ],
       textValues: [
-        'Test',
-        'Xbox'
-        // 'Playstation',
-        // 'PC',
-        // 'Mac',
-        // 'Linux',
-        // 'Steam',
-        // 'Epic Games Store',
-        // 'GOG.com'
+        'Xbox',
+        'Playstation',
+        'PC',
+        'Mac',
+        'Linux',
+        'Steam',
+        'Epic Games Store',
+        'GOG'
       ],
       textValue: null,
       timeoutText: null
