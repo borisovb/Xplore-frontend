@@ -16,7 +16,7 @@ export default {
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/xplore-grey.png' },
       {
         rel: 'stylesheet',
         href:
@@ -32,7 +32,13 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: false,
+  loadingIndicator: {
+    name: 'three-bounce',
+    color: '#58A4B0',
+    background: '#373f51'
+  },
+
   /*
    ** Global CSS
    */
@@ -41,9 +47,13 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    { src: '~plugins/global-components', ssr: false },
+    { src: '~plugins/repository', ssr: false },
     // Doc: https://vuelidate.js.org/#sub-basic-form
     { src: '~plugins/vuelidate', ssr: false },
     { src: '~plugins/fontawesome', ssr: false },
+    // Doc: https://github.com/surmon-china/vue-awesome-swiper
+    { src: '~plugins/vue-swiper', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules
@@ -70,7 +80,7 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: { baseURL: 'https://xplore-backend-staging.herokuapp.com' },
   /*
    ** Build configuration
    */
