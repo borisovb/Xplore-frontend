@@ -1,48 +1,99 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Nuxt Documentation
-        </a>
-        <a
-          href="https://github.com/borisovb/Xplore-frontend"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <div class="w-full">
+    <div class="grid md:grid-cols-3 mb-4 my-10">
+      <div class="flex content-center flex-wrap mx-5 md:ml-10 md:col-span-2">
+        <div class="mx-6 md:mx-16">
+          <div class="text-3xl md:text-5xl font-normal">
+            Xplore your gaming interests
+          </div>
+          <span class="text-xl md:text-3xl font-light"
+            >Find amazing games avaiable on
+          </span>
+          <transition name="slide-fade" mode="out-in">
+            <span :key="textValue" class="text-xl md:text-3xl font-bold">
+              {{ textValue }}</span
+            >
+          </transition>
+        </div>
+      </div>
+      <div
+        class="flex content-center justify-center md:justify-end flex-wrap p-12 md:pr-10 md:max-w-xl max-w-md"
+      >
+        <img class="p-1" src="~static/gamepad.png" />
       </div>
     </div>
+
+    <div class="text-3xl font-normal mx-12 mb-5">
+      <i class="fas fa-chart-line text-gray-600"></i> New & Trending
+    </div>
+    <GameCardsSlider :games="trending" />
+
+    <div class="text-3xl font-normal mx-12 mb-5 mt-12">
+      <i class="fas fa-user-check text-gray-600"></i> Recommendations
+    </div>
+    <GameCardsSlider :games="recommended" />
+
+    <!-- <div class="text-3xl font-normal mx-10">Best deals</div>
+    <GameCardsSlider :games="gameData" /> -->
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
+import _ from 'lodash'
+import { mapState, mapActions } from 'vuex'
+import GameCardsSlider from '~/components/GameCardsSlider'
 export default {
-  components: {
-    Logo
+  components: { GameCardsSlider },
+  data() {
+    return {
+      textValues: [
+        'Steam',
+        'PlayStation Store',
+        'Xbox Store',
+        'App Store',
+        'GOG',
+        'Nintendo Store',
+        'Xbox 360 Store',
+        'Google Play',
+        'itch.io',
+        'Epic Games'
+      ],
+      textValue: null,
+      timeoutText: null
+    }
+  },
+  computed: {
+    ...mapState('games', ['trending', 'recommended'])
+  },
+  mounted() {
+    this.changeText()
+    this.loadGames()
+  },
+  destroyed() {
+    this.timeoutText = null
+  },
+  methods: {
+    ...mapActions('games', ['loadGames']),
+    changeText() {
+      this.textValue = _.sample(this.textValues)
+      this.timeoutText = setTimeout(this.changeText, 3500)
+    }
   }
 }
 </script>
 
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
+<style scoped>
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
 }
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+
+.slide-fade-leave-active {
+  transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.links {
-  padding-top: 15px;
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>

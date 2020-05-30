@@ -16,7 +16,7 @@ export default {
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/xplore-grey.png' },
       {
         rel: 'stylesheet',
         href:
@@ -32,44 +32,52 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: false,
+  loadingIndicator: {
+    name: 'three-bounce',
+    color: '#58A4B0',
+    background: '#373f51'
+  },
+
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['~assets/css/main.css'],
   /*
    ** Plugins to load before mounting the App
    */
   plugins: [
-    // Doc: https://vuelidate.js.org/#sub-basic-form
-    { src: '~plugins/vuelidate', ssr: false }
+    { src: '~plugins/global-components', ssr: false },
+    { src: '~plugins/auth', ssr: false }, // Auth Configurations
+    { src: '~plugins/vuex-persist', ssr: false },
+    { src: '~plugins/repository', ssr: false },
+    { src: '~plugins/fontawesome', ssr: false },
+    { src: '~plugins/vuelidate', ssr: false }, // Doc: https://vuelidate.js.org/#sub-basic-form
+    { src: '~plugins/vue-modal', ssr: false }, // Doc: http://vue-js-modal.yev.io
+    { src: '~plugins/vue-toast', ssr: false }, // Doc: https://github.com/ankurk91/vue-toast-notification
+    { src: '~plugins/vue-swiper', ssr: false } // Doc: https://github.com/surmon-china/vue-awesome-swiper
   ],
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
-    // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    '@nuxtjs/tailwindcss',
-    // Doc: https://date-fns.org & https://github.com/nuxt-community/date-fns-module
-    '@nuxtjs/date-fns'
+    '@nuxtjs/eslint-module', // Doc: https://github.com/nuxt-community/eslint-module
+    '@nuxtjs/tailwindcss', // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
+    '@nuxtjs/date-fns' // Doc: https://date-fns.org & https://github.com/nuxt-community/date-fns-module
   ],
   /*
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
+    '@nuxtjs/axios', // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/pwa',
-    // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv' // Doc: https://github.com/nuxt-community/dotenv-module
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: { baseURL: 'https://xplore-backend-staging.herokuapp.com' },
   /*
    ** Build configuration
    */
