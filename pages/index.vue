@@ -43,14 +43,16 @@ export default {
   data() {
     return {
       textValues: [
-        'Xbox',
-        'Playstation',
-        'PC',
-        'Mac',
-        'Linux',
         'Steam',
-        'Epic Games Store',
-        'GOG'
+        'PlayStation Store',
+        'Xbox Store',
+        'App Store',
+        'GOG',
+        'Nintendo Store',
+        'Xbox 360 Store',
+        'Google Play',
+        'itch.io',
+        'Epic Games'
       ],
       textValue: null,
       timeoutText: null
