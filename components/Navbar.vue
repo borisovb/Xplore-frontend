@@ -27,8 +27,8 @@
       <div class="flex content-center justify-end flex-wrap pr-5 md:pr-12">
         <AccountDropdown v-if="token !== null">
           <img
-            class="w-8 rounded-full inline mx-1"
-            src="~/assets/img/profile-pic.jpg"
+            class="w-8 h-8 rounded-full inline mx-2"
+            :src="user.profilePicture.image"
           />
           {{ user.name }}
         </AccountDropdown>

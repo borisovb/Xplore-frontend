@@ -113,9 +113,8 @@ export default {
             type: 'success',
             position: 'top-right'
           })
-          this.$modal.hide('signin')
+          this.$modal.hide('login')
         } catch (error) {
-          console.log(error.response)
           this.errors = error.response.data.non_field_errors
         }
       }
