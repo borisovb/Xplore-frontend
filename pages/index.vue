@@ -23,10 +23,14 @@
       </div>
     </div>
 
-    <div class="text-3xl font-normal mx-10">New & Trending</div>
+    <div class="text-3xl font-normal mx-12 mb-5">
+      <i class="fas fa-chart-line text-gray-600"></i> New & Trending
+    </div>
     <GameCardsSlider :games="trending" />
 
-    <div class="text-3xl font-normal mx-10">Recommendations</div>
+    <div class="text-3xl font-normal mx-12 mb-5 mt-12">
+      <i class="fas fa-user-check text-gray-600"></i> Recommendations
+    </div>
     <GameCardsSlider :games="recommended" />
 
     <!-- <div class="text-3xl font-normal mx-10">Best deals</div>
@@ -37,7 +41,7 @@
 <script>
 import _ from 'lodash'
 import { mapState, mapActions } from 'vuex'
-import GameCardsSlider from '../components/GameCardsSlider'
+import GameCardsSlider from '~/components/GameCardsSlider'
 export default {
   components: { GameCardsSlider },
   data() {

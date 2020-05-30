@@ -40,7 +40,7 @@
               class="block px-4 py-2 text-sm leading-5 text-gray-100
             bg-hover hover:text-white focus:outline-none"
             >
-              <i class="far fa-user-circle align-middle mx-2"></i> Account
+              <i class="fas fa-user align-middle mx-2"></i> Account
             </p>
             <p
               class="block px-4 py-2 text-sm leading-5 text-gray-100

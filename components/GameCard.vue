@@ -1,12 +1,13 @@
 <template>
-  <div @click="openGame">
+  <div>
     <div
-      class="w-full gameCard bg-gray-500 rounded-t-lg shadow-md"
+      class="w-full gameCard bg-gray-500 rounded-t-lg shadow-md cursor-pointer"
       :style="{
         background: ' url(\'' + game.background_image + '\')',
         backgroundSize: 'cover',
         height: '60%'
       }"
+      @click="openGame"
     ></div>
     <div
       class="w-full gameCard bg-sec rounded-b-lg shadow-md flex items-center"
@@ -41,16 +42,16 @@ export default {
       default: () => {}
     }
   },
+  computed: {
+    ...mapState('icons', ['platformIcons'])
+  },
   methods: {
     openGame() {
       this.$router.push('/games/' + this.game.id)
     },
     addFavorite() {
-      console.log('asdsa')
+      console.log('Add Favorite')
     }
-  },
-  computed: {
-    ...mapState('icons', ['platformIcons'])
   }
 }
 </script>

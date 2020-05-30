@@ -35,6 +35,8 @@ export default {
         slidesPerView: 1,
         spaceBetween: 10,
         slidesPerGroup: 1,
+        preventClicks: false,
+        preventClicksPropagation: false,
         breakpoints: {
           768: {
             slidesPerView: 2,

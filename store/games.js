@@ -16,7 +16,10 @@ export const actions = {
     const games = await this.$api.games.trending()
     commit('SET_TRENDING', games)
   },
-  setRecommended({ commit }) {},
+  async setRecommended({ commit }) {
+    const games = await this.$api.games.recommendations(4200)
+    commit('SET_RECOMMENDED', games)
+  },
 
   loadGames({ dispatch }) {
     dispatch('setTrending')

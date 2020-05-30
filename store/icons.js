@@ -15,13 +15,13 @@ export const state = () => ({
     Web: 'fab fa-html5'
   },
   storeIcons: {
-    Steam: 'fab fa-windows',
+    Steam: 'fab fa-steam',
     'PlayStation Store': 'fab fa-playstation',
     'Xbox Store': 'fab fa-xbox',
     'Xbox 360 Store': 'fab fa-xbox',
     'App Store': 'fab fa-app-store-ios',
     GOG: '',
-    'Nintendo Store': '',
+    'Nintendo Store': 'fas fa-gamepad',
     'Google Play': 'fab fa-google-play',
     'Epic Games': '',
     'itch.io': ''
