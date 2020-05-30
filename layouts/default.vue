@@ -2,7 +2,7 @@
   <div class="main-container">
     <Navbar />
     <nuxt class="flex-1" />
-    <div>asdaasdasdasdsd</div>
+    <!-- <div>Footer</div> -->
   </div>
 </template>
 

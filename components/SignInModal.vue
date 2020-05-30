@@ -1,6 +1,6 @@
 <template>
   <modal
-    name="login"
+    name="signin"
     transition="pop-out"
     height="auto"
     :adaptive="true"
@@ -12,15 +12,16 @@
         :style="{
           background:
             'url(' +
-            require('@/assets/img/login.jpg') +
+            require('@/assets/img/register.jpg') +
             ') no-repeat center center / cover'
         }"
       ></div>
       <div class="flex-1 p-5">
         <form>
           <div class="text-3xl text-center h-full text-gray-800 mb-5">
-            LOGIN
+            SIGN UP
           </div>
+
           <div class="mb-2">
             <label class="label" for="username">Username</label>
             <input
@@ -37,6 +38,38 @@
                 class="text-red-500 text-xs italic mt-1"
               >
                 This field is required.
+              </p>
+              <p
+                v-if="!$v.username.between"
+                class="text-red-500 text-xs italic mt-1"
+              >
+                The username must be a least 4 characters
+              </p>
+            </div>
+          </div>
+
+          <div class="mb-2">
+            <label class="label" for="email">Email </label>
+            <input
+              id="email"
+              v-model="$v.email.$model"
+              class="field"
+              :class="{ 'border-red-500': $v.email.$error }"
+              type="email"
+              placeholder="Email"
+            />
+            <div v-if="$v.email.$error && $v.email.$dirty">
+              <p
+                v-if="!$v.email.required"
+                class="text-red-500 text-xs italic mt-1"
+              >
+                This field is required.
+              </p>
+              <p
+                v-if="!$v.email.email"
+                class="text-red-500 text-xs italic mt-1"
+              >
+                The provided email is not valid
               </p>
             </div>
           </div>
@@ -58,21 +91,45 @@
               >
                 This field is required.
               </p>
+              <p
+                v-if="!$v.password.minLength"
+                class="text-red-500 text-xs italic mt-1"
+              >
+                The password must be a least 8 characters
+              </p>
             </div>
           </div>
-          <div v-if="errors !== null">
-            <p
-              v-for="error in errors"
-              :key="error"
-              class="text-red-500 text-xs italic mt-1 text-center mt-5"
-            >
-              {{ error }}
-            </p>
+
+          <div class="mb-2">
+            <label class="label" for="repeatPassword">Repeat Password</label>
+            <input
+              id="repeatPassword"
+              v-model="$v.repeatPassword.$model"
+              class="field"
+              :class="{ 'border-red-500': $v.repeatPassword.$error }"
+              type="password"
+              placeholder="******************"
+            />
+            <div v-if="$v.repeatPassword.$error && $v.repeatPassword.$dirty">
+              <p
+                v-if="!$v.repeatPassword.required"
+                class="text-red-500 text-xs italic mt-1"
+              >
+                This field is required.
+              </p>
+              <p
+                v-if="!$v.repeatPassword.sameAsPassword"
+                class="text-red-500 text-xs italic mt-1"
+              >
+                The passwords does not match
+              </p>
+            </div>
           </div>
+
           <div class="flex items-center justify-center mt-5 mb-2">
             <Btn highlighted class="p-2" :disabled="loading" @click="onSubmit">
               <i v-show="!loading" class="fas fa-user-plus"></i>
-              <i v-show="loading" class="fas fa-spinner fa-spin"></i> LOGIN
+              <i v-show="loading" class="fas fa-spinner fa-spin"></i> SIGN UP
             </Btn>
           </div>
         </form>
@@ -81,21 +138,24 @@
   </modal>
 </template>
 <script>
-import { required } from 'vuelidate/lib/validators'
+import { required, email, sameAs, minLength } from 'vuelidate/lib/validators'
 import { mapActions } from 'vuex'
 export default {
-  name: 'LoginModal',
+  name: 'SignInModal',
   data() {
     return {
       username: null,
+      email: null,
       password: null,
-      loading: false,
-      errors: null
+      repeatPassword: null,
+      loading: false
     }
   },
   validations: {
-    username: { required },
-    password: { required }
+    username: { required, minLength: minLength(4) },
+    email: { required, email },
+    password: { required, minLength: minLength(8) },
+    repeatPassword: { required, sameAsPassword: sameAs('password') }
   },
 
   methods: {
@@ -105,6 +165,7 @@ export default {
       this.$v.$touch()
       if (!this.$v.$invalid) {
         try {
+          await this.$api.users.signup(this.username, this.email, this.password)
           await this.login({ username: this.username, password: this.password })
           this.$toast.open({
             message:
@@ -115,8 +176,14 @@ export default {
           })
           this.$modal.hide('signin')
         } catch (error) {
-          console.log(error.response)
-          this.errors = error.response.data.non_field_errors
+          this.$toast.open({
+            message:
+              '<i class="fas fa-times-circle"></i> Something went wrong.',
+            duration: 5000,
+            type: 'error',
+            position: 'top-right'
+          })
+          this.$modal.hide('signin')
         }
       }
       this.loading = false

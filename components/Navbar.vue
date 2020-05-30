@@ -4,7 +4,7 @@
       <div class="pl-5 md:pl-12 max-w-full max-h-full">
         <a href="/">
           <img
-            class="object-contain h-14 max-w-full max-h-full mt-1"
+            class="object-contain h-16 max-w-full max-h-full mt-1"
             src="@/static/xplore-white.png"
           />
         </a>
@@ -25,8 +25,18 @@
         </div>
       </div>
       <div class="flex content-center justify-end flex-wrap pr-5 md:pr-12">
-        <a class="mx-3" href="#">Login</a>
-        <a class="mx-3" href="#">Sign Up</a>
+        <AccountDropdown v-if="token !== null">
+          <img
+            class="w-8 rounded-full inline mx-1"
+            src="~/assets/img/profile-pic.jpg"
+          />
+          {{ user.name }}
+        </AccountDropdown>
+
+        <div v-if="token === null">
+          <a class="mx-3" href="#" @click="showLoginModal">Login</a>
+          <a class="mx-3" href="#" @click="showSignUpModal">Sign Up</a>
+        </div>
       </div>
     </nav>
     <div class="flex content-center flex-wrap mx-10 md:hidden">
@@ -44,9 +54,35 @@
         </button>
       </div>
     </div>
+    <LoginModal></LoginModal>
+    <SignInModal></SignInModal>
   </div>
 </template>
+<script>
+import { mapState } from 'vuex'
+import LoginModal from '~/components/LoginModal'
+import SignInModal from '~/components/SignInModal'
+import AccountDropdown from '~/components/AccountDropdown'
 
+export default {
+  components: {
+    LoginModal,
+    SignInModal,
+    AccountDropdown
+  },
+  computed: {
+    ...mapState('auth', ['token', 'user'])
+  },
+  methods: {
+    showLoginModal() {
+      this.$modal.show('login')
+    },
+    showSignUpModal() {
+      this.$modal.show('signin')
+    }
+  }
+}
+</script>
 <style scoped>
 .gradient {
   background: rgb(0, 0, 0);

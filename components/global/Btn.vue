@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded-lg p-2 cursor-pointer"
+    class="rounded-lg p-2 cursor-pointer text-white"
     :class="{ 'bg-main': !highlighted, 'bg-highlight': highlighted }"
     @click="$emit('click')"
   >

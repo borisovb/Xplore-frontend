@@ -1,3 +1,4 @@
-import vmodal from 'vue-js-modal'
 import Vue from 'vue'
-Vue.use(vmodal)
+import VModal from 'vue-js-modal'
+
+Vue.use(VModal)

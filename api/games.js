@@ -2,7 +2,7 @@ const resource = 'games'
 
 export default ($axios) => ({
   trending() {
-    const url = `/${resource}/new/trending`
+    const url = `/${resource}/trending`
     return $axios.$get(url)
   },
   recommendations(id) {
