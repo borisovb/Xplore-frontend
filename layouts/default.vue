@@ -3,7 +3,6 @@
     <loading
       :active.sync="waitingForResponse"
       :can-cancel="false"
-      :is-full-page="true"
       loader="dots"
       :opacity="1"
       color="#58A4B0"
