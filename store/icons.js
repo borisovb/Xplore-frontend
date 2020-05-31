@@ -6,7 +6,7 @@ export const state = () => ({
     iOS: 'fab fa-app-store-ios',
     Android: 'fab fa-android',
     'Apple Macintosh': 'fab fa-apple',
-    Linux: 'fas fa-linux',
+    Linux: 'fa fa-linux',
     Nintendo: 'fas fa-gamepad',
     Atari: 'fas fa-gamepad',
     'Commodore / Amiga': 'fas fa-gamepad',
