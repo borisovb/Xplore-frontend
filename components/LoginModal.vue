@@ -5,6 +5,7 @@
     height="auto"
     :adaptive="true"
     :scrollable="true"
+    @before-close="toggleLoginModal(false)"
   >
     <div class="flex justify-between text-black">
       <div
@@ -93,13 +94,15 @@ export default {
       errors: null
     }
   },
+  mounted() {
+    this.$modal.show('login')
+  },
   validations: {
     username: { required },
     password: { required }
   },
-
   methods: {
-    ...mapActions('auth', ['login']),
+    ...mapActions('auth', ['login', 'toggleLoginModal']),
     async onSubmit() {
       this.loading = true
       this.$v.$touch()
@@ -108,7 +111,7 @@ export default {
           await this.login({ username: this.username, password: this.password })
           this.$toast.open({
             message:
-              '<i class="fas fa-check-circle"></i> Your account was successfully created.',
+              '<i class="fas fa-check-circle"></i> You successfully logged in. Welocme back!',
             duration: 5000,
             type: 'success',
             position: 'top-right'
@@ -129,14 +132,5 @@ export default {
 }
 .label {
   @apply block text-gray-700 text-sm font-bold mb-2;
-}
-.pop-out-enter-active,
-.pop-out-leave-active {
-  transition: all 0.5s;
-}
-.pop-out-enter,
-.pop-out-leave-active {
-  opacity: 0;
-  transform: translateY(24px);
 }
 </style>

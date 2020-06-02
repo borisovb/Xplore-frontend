@@ -5,6 +5,7 @@
     height="auto"
     :adaptive="true"
     :scrollable="true"
+    @before-close="toggleSignUpModal(false)"
   >
     <div class="flex justify-between text-black">
       <div
@@ -151,15 +152,17 @@ export default {
       loading: false
     }
   },
+  mounted() {
+    this.$modal.show('signin')
+  },
   validations: {
     username: { required, minLength: minLength(4) },
     email: { required, email },
     password: { required, minLength: minLength(8) },
     repeatPassword: { required, sameAsPassword: sameAs('password') }
   },
-
   methods: {
-    ...mapActions('auth', ['login']),
+    ...mapActions('auth', ['login', 'toggleSignUpModal']),
     async onSubmit() {
       this.loading = true
       this.$v.$touch()
@@ -197,14 +200,5 @@ export default {
 }
 .label {
   @apply block text-gray-700 text-sm font-bold mb-2;
-}
-.pop-out-enter-active,
-.pop-out-leave-active {
-  transition: all 0.5s;
-}
-.pop-out-enter,
-.pop-out-leave-active {
-  opacity: 0;
-  transform: translateY(24px);
 }
 </style>
