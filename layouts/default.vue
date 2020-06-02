@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <Navbar />
-    <nuxt class="flex-1" />
+    <nuxt class="flex-1 px-5" />
     <div class="p-12"></div>
   </div>
 </template>

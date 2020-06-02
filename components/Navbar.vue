@@ -11,17 +11,20 @@
       </div>
       <div class="md:flex content-center flex-wrap hidden">
         <div class="relative mx-auto w-full text-gray-800 max-h-full">
-          <input
-            class="bg-input w-full h-10 px-5 py-2 pr-16 rounded-full shadow-md text-sm focus:outline-none"
-            type="search"
-            placeholder="Search"
-          />
-          <button
-            type="submit"
-            class="absolute right-0 top-0 mt-2 mr-4 text-blue-500"
-          >
-            <i class="fas fa-search"></i>
-          </button>
+          <form @submit.prevent="search">
+            <input
+              v-model="searchQuery"
+              class="bg-input w-full h-10 px-5 py-2 pr-16 rounded-full shadow-md text-sm focus:outline-none"
+              type="search"
+              placeholder="Search"
+            />
+            <button
+              type="submit"
+              class="absolute right-0 top-0 mt-2 mr-4 text-blue-500"
+            >
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
         </div>
       </div>
       <div class="flex content-center justify-end flex-wrap pr-5 md:pr-12">
@@ -34,8 +37,8 @@
         </AccountDropdown>
 
         <div v-if="token === null">
-          <a class="mx-3" href="#" @click="showLoginModal">Login</a>
-          <a class="mx-3" href="#" @click="showSignUpModal">Sign Up</a>
+          <a class="mx-3" href="#" @click="toggleLoginModal(true)">Login</a>
+          <a class="mx-3" href="#" @click="toggleSignUpModal(true)">Sign Up</a>
         </div>
       </div>
     </nav>
@@ -54,12 +57,12 @@
         </button>
       </div>
     </div>
-    <LoginModal></LoginModal>
-    <SignInModal></SignInModal>
+    <LoginModal v-if="loginModal"></LoginModal>
+    <SignInModal v-if="signUpModal"></SignInModal>
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import LoginModal from '~/components/LoginModal'
 import SignInModal from '~/components/SignInModal'
 import AccountDropdown from '~/components/AccountDropdown'
@@ -70,15 +73,20 @@ export default {
     SignInModal,
     AccountDropdown
   },
+  data() {
+    return {
+      searchQuery: ''
+    }
+  },
   computed: {
-    ...mapState('auth', ['token', 'user'])
+    ...mapState('auth', ['token', 'user', 'loginModal', 'signUpModal'])
   },
   methods: {
-    showLoginModal() {
-      this.$modal.show('login')
-    },
-    showSignUpModal() {
-      this.$modal.show('signin')
+    ...mapActions('auth', ['toggleLoginModal', 'toggleSignUpModal']),
+    search() {
+      if (/\S/.test(this.searchQuery)) {
+        this.$router.push('/search/' + this.searchQuery)
+      }
     }
   }
 }

@@ -56,7 +56,8 @@ export default {
     { src: '~plugins/vuelidate', ssr: false }, // Doc: https://vuelidate.js.org/#sub-basic-form
     { src: '~plugins/vue-modal', ssr: false }, // Doc: http://vue-js-modal.yev.io
     { src: '~plugins/vue-toast', ssr: false }, // Doc: https://github.com/ankurk91/vue-toast-notification
-    { src: '~plugins/vue-swiper', ssr: false } // Doc: https://github.com/surmon-china/vue-awesome-swiper
+    { src: '~plugins/vue-swiper', ssr: false }, // Doc: https://github.com/surmon-china/vue-awesome-swiper
+    { src: '~plugins/vue-infinite-loading', ssr: false } // Doc: https://github.com/PeachScript/vue-infinite-loading
   ],
   /*
    ** Nuxt.js dev-modules

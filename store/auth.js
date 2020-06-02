@@ -1,6 +1,8 @@
 export const state = () => ({
   token: null,
-  user: null
+  user: null,
+  loginModal: false,
+  signUpModal: false
 })
 
 export const mutations = {
@@ -13,6 +15,12 @@ export const mutations = {
   REMOVE_USER_TOKEN(state) {
     state.token = null
     state.user = null
+  },
+  SET_LOGIN_MODAL(state, bool) {
+    state.loginModal = bool
+  },
+  SET_SIGNUP_MODAL(state, bool) {
+    state.signUpModal = bool
   }
 }
 export const actions = {
@@ -39,6 +47,12 @@ export const actions = {
   },
   logout({ commit }) {
     commit('REMOVE_USER_TOKEN')
+  },
+  toggleLoginModal({ commit }, bool) {
+    commit('SET_LOGIN_MODAL', bool)
+  },
+  toggleSignUpModal({ commit }, bool) {
+    commit('SET_SIGNUP_MODAL', bool)
   }
 }
 

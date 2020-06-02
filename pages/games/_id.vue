@@ -11,7 +11,7 @@
 
     <div v-if="!loading">
       <div class="grid grid-cols-10 px-10 py-10">
-        <div class="col-span-10 md:col-span-4 lg:col-span-3 pr-5">
+        <div class="col-span-10 md:col-span-4 lg:col-span-3 pr-5 xl:px-5">
           <div
             class="rounded-t-lg shadow-xl"
             :style="{

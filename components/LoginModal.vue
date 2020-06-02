@@ -5,6 +5,7 @@
     height="auto"
     :adaptive="true"
     :scrollable="true"
+    @before-close="toggleLoginModal(false)"
   >
     <div class="flex justify-between text-black">
       <div
@@ -93,13 +94,15 @@ export default {
       errors: null
     }
   },
+  mounted() {
+    this.$modal.show('login')
+  },
   validations: {
     username: { required },
     password: { required }
   },
-
   methods: {
-    ...mapActions('auth', ['login']),
+    ...mapActions('auth', ['login', 'toggleLoginModal']),
     async onSubmit() {
       this.loading = true
       this.$v.$touch()
@@ -129,14 +132,5 @@ export default {
 }
 .label {
   @apply block text-gray-700 text-sm font-bold mb-2;
-}
-.pop-out-enter-active,
-.pop-out-leave-active {
-  transition: all 0.5s;
-}
-.pop-out-enter,
-.pop-out-leave-active {
-  opacity: 0;
-  transform: translateY(24px);
 }
 </style>

@@ -9,6 +9,9 @@ background-color: #D8DBE2;
 .bg-main {
     background-color: #373f51;
 }
+.bg-custom:hover {
+    background: #69779667;
+}
 .bg-sec {
     background-color: #1B1B1E;
 }
@@ -17,8 +20,37 @@ background-color: #D8DBE2;
 }
 .vm--overlay {
     background: rgba(0, 0, 0, 0.603) !important;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    color: #fff !important;
+    text-shadow: 2px 2px #58A4B0;
+}
+
+.pop-out-enter-active,
+.pop-out-leave-active {
+  transition: all 0.5s;
+}
+.pop-out-enter,
+.pop-out-leave-active {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.slide-enter-active {
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in;
   }
-  .swiper-button-prev, .swiper-button-next {
-      color: #fff !important;
-      text-shadow: 2px 2px #58A4B0;
+  .slide-leave-active {
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+  .slide-enter-to,
+  .slide-leave {
+    max-height: 200px;
+    overflow: hidden;
+  }
+  .slide-enter,
+  .slide-leave-to {
+    max-height: 0;
+    overflow: hidden;
   }
