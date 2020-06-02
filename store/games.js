@@ -16,8 +16,13 @@ export const actions = {
     const games = await this.$api.games.trending()
     commit('SET_TRENDING', games)
   },
-  async setRecommended({ commit }) {
-    const games = await this.$api.games.recommendations(4200)
+  async setRecommended({ commit, rootState }) {
+    const len = rootState.auth.favorites.length
+    let id = 4200
+    if (len >= 1) {
+      id = rootState.auth.favorites[len - 1].id
+    }
+    const games = await this.$api.games.recommendations(id)
     commit('SET_RECOMMENDED', games)
   },
 

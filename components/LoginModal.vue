@@ -111,7 +111,7 @@ export default {
           await this.login({ username: this.username, password: this.password })
           this.$toast.open({
             message:
-              '<i class="fas fa-check-circle"></i> Your account was successfully created.',
+              '<i class="fas fa-check-circle"></i> You successfully logged in. Welocme back!',
             duration: 5000,
             type: 'success',
             position: 'top-right'

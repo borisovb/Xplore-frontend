@@ -9,5 +9,21 @@ export default ($axios) => ({
   },
   me() {
     return $axios.$get(`/${resource}/me`)
+  },
+  addToFavorites(username, game) {
+    return $axios.$post(`/${resource}/${username}/favorites/`, game)
+  },
+  addToWishlist(username, game) {
+    return $axios.$post(`/${resource}/${username}/wishlist/`, game)
+  },
+  removeFromFavorites(username, id) {
+    return $axios.$delete(`/${resource}/${username}/favorites/`, {
+      data: { id }
+    })
+  },
+  removeFromWishlist(username, id) {
+    return $axios.$delete(`/${resource}/${username}/wishlist/`, {
+      data: { id }
+    })
   }
 })

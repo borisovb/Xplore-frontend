@@ -20,7 +20,7 @@
                 game.background_image +
                 '\') no-repeat center center',
               backgroundSize: 'cover',
-              height: '50vh',
+              height: '60vh',
               'max-height': '850px'
             }"
           ></div>
@@ -30,8 +30,31 @@
             <Btn v-if="game.clip !== null" highlighted @click="showVideo">
               <i class="fas fa-play"></i> Video
             </Btn>
-            <Btn> <i class="fas fa-plus"></i> Favorite </Btn>
-            <Btn> <i class="fas fa-gift"></i> Wishlist </Btn>
+
+            <Btn
+              v-if="user !== null"
+              class="hover:bg-gray-700"
+              :class="{ 'border font-bold': isFavorite(game.id) }"
+              @click="onFavoriteClick(game)"
+            >
+              <i
+                class="fas fa-heart"
+                :class="{ 'text-red-500': isFavorite(game.id) }"
+              ></i>
+              Favorite
+            </Btn>
+            <Btn
+              v-if="user !== null"
+              class="hover:bg-gray-700"
+              :class="{ 'border font-bold': isInWishlist(game.id) }"
+              @click="onWishlistClick(game)"
+            >
+              <i
+                class="fas fa-gift"
+                :class="{ 'text-blue-400': isInWishlist(game.id) }"
+              ></i>
+              Wishlist
+            </Btn>
           </div>
         </div>
 
@@ -156,7 +179,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import _ from 'lodash'
 import GameCardsSlider from '~/components/GameCardsSlider'
 
@@ -171,6 +194,7 @@ export default {
     }
   },
   computed: {
+    ...mapState('auth', ['user', 'favorites', 'wishlist']),
     ...mapState('icons', ['platformIcons', 'storeIcons'])
   },
   validate({ params }) {
@@ -196,6 +220,12 @@ export default {
     }
   },
   methods: {
+    ...mapActions('auth', [
+      'addToFavorites',
+      'addToWishlist',
+      'removeFromFavorites',
+      'removeFromWishlist'
+    ]),
     goToStore(url) {
       if (url !== null && url !== '') {
         window.open(url, '_blank')
@@ -203,6 +233,26 @@ export default {
     },
     showVideo() {
       this.$modal.show('video')
+    },
+    isFavorite(id) {
+      return this.favorites.some((f) => f.id === id)
+    },
+    isInWishlist(id) {
+      return this.wishlist.some((w) => w.id === id)
+    },
+    onFavoriteClick(game) {
+      if (!this.isFavorite(game.id)) {
+        this.addToFavorites(game)
+      } else {
+        this.removeFromFavorites(game.id)
+      }
+    },
+    onWishlistClick(game) {
+      if (!this.isInWishlist(game.id)) {
+        this.addToWishlist(game)
+      } else {
+        this.removeFromWishlist(game.id)
+      }
     }
   }
 }

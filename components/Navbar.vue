@@ -28,15 +28,15 @@
         </div>
       </div>
       <div class="flex content-center justify-end flex-wrap pr-5 md:pr-12">
-        <AccountDropdown v-if="token !== null">
+        <AccountDropdown v-if="user !== null">
           <img
             class="w-8 h-8 rounded-full inline mx-2"
-            :src="user.profilePicture.image"
+            :src="user.profilePicture"
           />
           {{ user.name }}
         </AccountDropdown>
 
-        <div v-if="token === null">
+        <div v-if="user === null">
           <a class="mx-3" href="#" @click="toggleLoginModal(true)">Login</a>
           <a class="mx-3" href="#" @click="toggleSignUpModal(true)">Sign Up</a>
         </div>
