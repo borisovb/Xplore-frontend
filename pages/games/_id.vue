@@ -7,6 +7,7 @@
       :opacity="1"
       color="#58A4B0"
       background-color="#373f51"
+      :is-full-page="true"
     ></loading>
 
     <div v-if="!loading">
