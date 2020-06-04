@@ -5,7 +5,9 @@ export const state = () => ({
   wishlist: [],
   friends: [],
   loginModal: false,
-  signUpModal: false
+  signUpModal: false,
+  friendsModal: false,
+  addFriendsModal: false
 })
 
 export const mutations = {
@@ -32,6 +34,9 @@ export const mutations = {
   ADD_TO_WISHLIST(state, gameObj) {
     state.wishlist.push(gameObj)
   },
+  ADD_TO_FRIENDS_LIST(state, friends) {
+    state.friends = friends
+  },
   REMOVE_FROM_FAVORITES(state, id) {
     state.favorites = state.favorites.filter((f) => f.id !== id)
   },
@@ -43,6 +48,12 @@ export const mutations = {
   },
   SET_SIGNUP_MODAL(state, bool) {
     state.signUpModal = bool
+  },
+  SET_FRIENDS_MODAL(state, bool) {
+    state.friendsModal = bool
+  },
+  SET_ADD_FRIEND_MODAL(state, bool) {
+    state.addFriendsModal = bool
   }
 }
 export const actions = {
@@ -90,12 +101,20 @@ export const actions = {
     await this.$api.users.addToWishlist(state.user.name, gameObj)
     commit('ADD_TO_WISHLIST', gameObj)
   },
+  async addToFriendsList({ state, commit }, friendUsername) {
+    const { friends } = await this.$api.users.addFriendToFriendsList(
+      state.user.name,
+      friendUsername
+    )
+    commit('ADD_TO_FRIENDS_LIST', friends)
+  },
   async removeFromFavorites({ state, commit }, id) {
     await this.$api.users.removeFromFavorites(state.user.name, id)
     commit('REMOVE_FROM_FAVORITES', id)
   },
   async removeFromWishlist({ state, commit }, id) {
     await this.$api.users.removeFromWishlist(state.user.name, id)
+
     commit('REMOVE_FROM_WISHLIST', id)
   },
   toggleLoginModal({ state, commit }, bool) {
@@ -103,6 +122,12 @@ export const actions = {
   },
   toggleSignUpModal({ commit }, bool) {
     commit('SET_SIGNUP_MODAL', bool)
+  },
+  toggleFriendsModal({ commit }, bool) {
+    commit('SET_FRIENDS_MODAL', bool)
+  },
+  toggleAddFriendModal({ commit }, bool) {
+    commit('SET_ADD_FRIEND_MODAL', bool)
   }
 }
 
