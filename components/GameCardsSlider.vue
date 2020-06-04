@@ -1,5 +1,5 @@
 <template>
-  <div class="ml-10 mr-4 mb-5 mt-2">
+  <div class="mx-6 mb-5 mt-2">
     <div v-swiper="swiperOptions">
       <div class="swiper-wrapper">
         <GameCard
@@ -27,6 +27,10 @@ export default {
     games: {
       type: Array,
       default: () => []
+    },
+    sm: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -43,15 +47,15 @@ export default {
             slidesPerGroup: 2
           },
           1024: {
-            slidesPerView: 3,
-            slidesPerGroup: 3
+            slidesPerView: this.sm ? 2 : 3,
+            slidesPerGroup: this.sm ? 2 : 3
           },
           1280: {
-            slidesPerView: 4,
-            slidesPerGroup: 4
+            slidesPerView: this.sm ? 3 : 4,
+            slidesPerGroup: this.sm ? 3 : 4
           }
         },
-        loop: true,
+        loop: !this.sm,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'

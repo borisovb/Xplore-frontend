@@ -36,12 +36,14 @@
           :class="{ 'rounded-b-md': showDropdown }"
         >
           <div class="py-1 cursor-pointer">
-            <p
-              class="block px-4 py-2 text-sm leading-5 text-gray-100
+            <nuxt-link :to="'/users/' + user.name">
+              <p
+                class="block px-4 py-2 text-sm leading-5 text-gray-100
             hover:bg-gray-600 hover:text-white focus:outline-none"
-            >
-              <i class="fas fa-user align-middle mx-2"></i> Account
-            </p>
+              >
+                <i class="fas fa-user align-middle mx-2"></i> Account
+              </p>
+            </nuxt-link>
             <p
               class="block px-4 py-2 text-sm leading-5 text-gray-100
             hover:bg-gray-600 hover:text-white focus:outline-none"
@@ -57,7 +59,7 @@
             <p
               class="block px-4 py-2 text-sm leading-5 text-gray-100
             hover:bg-gray-600 hover:text-white focus:outline-none"
-              @click="logout"
+              @click="onLogout"
             >
               <i class="fas fa-sign-out-alt align-middle mx-2"></i> Log Out
             </p>
@@ -69,7 +71,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data() {
@@ -77,10 +79,17 @@ export default {
       showDropdown: false
     }
   },
+  computed: {
+    ...mapState('auth', ['user'])
+  },
   methods: {
     ...mapActions('auth', ['logout']),
     show() {
       this.showDropdown = !this.showDropdown
+    },
+    onLogout() {
+      this.logout()
+      this.$router.push('/')
     }
   }
 }

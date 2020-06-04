@@ -29,7 +29,7 @@
         v-for="game in results"
         :key="game.id"
         class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 my-2"
-        style="height: 280px"
+        style="height: 320px"
       >
         <GameCard :game="game"></GameCard>
       </div>

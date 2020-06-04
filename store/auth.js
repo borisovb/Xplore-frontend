@@ -1,12 +1,16 @@
-export const state = () => ({
-  token: null,
-  user: null,
-  favorites: [],
-  wishlist: [],
-  friends: [],
-  loginModal: false,
-  signUpModal: false
-})
+const getDefaultState = () => {
+  return {
+    token: null,
+    user: null,
+    favorites: [],
+    wishlist: [],
+    friends: [],
+    loginModal: false,
+    signUpModal: false
+  }
+}
+
+export const state = getDefaultState()
 
 export const mutations = {
   SET_TOKEN(state, token) {
@@ -21,10 +25,6 @@ export const mutations = {
     state.favorites = accInfo.favorites.games
     state.wishlist = accInfo.wishlist.games
     state.friends = accInfo.friends.friends
-  },
-  REMOVE_USER_TOKEN(state) {
-    state.token = null
-    state.user = null
   },
   ADD_TO_FAVORITES(state, gameObj) {
     state.favorites.push(gameObj)
@@ -43,6 +43,9 @@ export const mutations = {
   },
   SET_SIGNUP_MODAL(state, bool) {
     state.signUpModal = bool
+  },
+  RESET(state) {
+    Object.assign(state, getDefaultState())
   }
 }
 export const actions = {
@@ -66,11 +69,11 @@ export const actions = {
       wishlist,
       friends
     }
-    console.log(accInfo)
+
     commit('SET_USER', accInfo)
   },
   logout({ commit }) {
-    commit('REMOVE_USER_TOKEN')
+    commit('RESET')
   },
   async addToFavorites({ state, commit }, game) {
     const gameObj = {

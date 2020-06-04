@@ -4,15 +4,15 @@
       <div
         class="w-full gameCard bg-gray-500 rounded-t-lg shadow-md cursor-pointer"
         :style="{
-          background: ' url(\'' + game.background_image + '\')',
+          background: ' url(\'' + getImage + '\')',
           backgroundSize: 'cover',
-          height: '60%'
+          height: '70%'
         }"
       ></div>
     </nuxt-link>
     <div
       class="w-full gameCard bg-sec rounded-b-lg shadow-md flex items-center"
-      style="height: 40%"
+      style="height: 30%"
     >
       <div class="ml-5 w-full">
         <div>
@@ -26,13 +26,6 @@
         <nuxt-link :to="'/games/' + game.id"
           ><div class="text-xl">{{ game.name }}</div></nuxt-link
         >
-        <!-- <div class="flex w-full my-2">
-          <Btn @click.native="addFavorite">
-            <i class="fas fa-plus"></i> Favorite
-          </Btn>
-          <button @click="addFavorite">test</button>
-          <Btn class="p-2 mx-2"> <i class="fas fa-gift"></i> Wishlist </Btn>
-        </div> -->
       </div>
     </div>
   </div>
@@ -49,11 +42,13 @@ export default {
     }
   },
   computed: {
-    ...mapState('icons', ['platformIcons'])
-  },
-  methods: {
-    addFavorite() {
-      console.log('Add Favorite')
+    ...mapState('icons', ['platformIcons']),
+    getImage() {
+      if (this.game.background_image) {
+        return this.game.background_image
+      } else {
+        return this.game.poster_url
+      }
     }
   }
 }

@@ -10,6 +10,18 @@ export default ($axios) => ({
   me() {
     return $axios.$get(`/${resource}/me`)
   },
+  getUser(username) {
+    return $axios.$get(`/${resource}/${username}`)
+  },
+  getUserFavorites(username) {
+    return $axios.$get(`/${resource}/${username}/favorites/`)
+  },
+  getUserWishlist(username) {
+    return $axios.$get(`/${resource}/${username}/wishlist/`)
+  },
+  getUserFriends(username) {
+    return $axios.$get(`/${resource}/${username}/friends/`)
+  },
   addToFavorites(username, game) {
     return $axios.$post(`/${resource}/${username}/favorites/`, game)
   },
