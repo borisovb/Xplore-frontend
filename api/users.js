@@ -28,6 +28,11 @@ export default ($axios) => ({
   addToWishlist(username, game) {
     return $axios.$post(`/${resource}/${username}/wishlist/`, game)
   },
+  addFriendToFriendsList(username, friendUsername) {
+    return $axios.$post(`/${resource}/${username}/friends/`, {
+      username: friendUsername
+    })
+  },
   removeFromFavorites(username, id) {
     return $axios.$delete(`/${resource}/${username}/favorites/`, {
       data: { id }
