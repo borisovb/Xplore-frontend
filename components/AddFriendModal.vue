@@ -1,43 +1,57 @@
 <template>
   <modal
     name="add-friends"
-    transition="pop-up"
+    transition="pop-out"
     height="auto"
     :adaptive="true"
     :scrollable="true"
-    styles="background: rgb(55,63,81);
-    background: linear-gradient(207deg, rgba(55,63,81,1) 46%, rgba(0,0,0,1) 100%);
-    border: 1px solid white;"
     @before-close="toggleAddFriendModal(false)"
   >
-    <div class="text-2xl font-normal text-white m-4">
-      <i class="fas fa-user-plus"></i> Add Friend
+    <div class="text-lg font-normal text-gray-900">
+      <div class="text-3xl font-normal m-5">
+        <i class="fas fa-user-plus text-gray-600"></i> Add Friend
+      </div>
     </div>
-    <form @submit.prevent="addFriend">
+    <div class="h-16 m-10">
+      <label class="label" for="username">Username</label>
       <input
-        v-model="addFriendUsername"
-        class="bg-input w-4/5 m-4 h-10 px-5 py-2 pr-16 rounded-full shadow-md text-sm focus:outline-none text-gray-800"
-        type="search"
-        placeholder="Add Friend"
+        id="username"
+        v-model="$v.addFriendUsername.$model"
+        class="field"
+        :class="{ 'border-red-500': $v.addFriendUsername.$error }"
+        type="text"
+        placeholder="Enter username"
       />
-      <button
-        type="submit"
-        class="absolute right-0 top-0 mt-2 mr-4 text-blue-500"
-      >
-        <i class="fas fa-search"></i>
-      </button>
-    </form>
+      <div v-if="$v.addFriendUsername.$error">
+        <p
+          v-if="!$v.addFriendUsername.required && $v.addFriendUsername.$dirty"
+          class="text-red-500 text-xs italic mt-1"
+        >
+          This field is required.
+        </p>
+      </div>
+    </div>
+    <div class="flex mx-10 my-5">
+      <div class="ml-auto flex">
+        <Btn class="mx-2" @click="toggleAddFriendModal(false)">Cancel</Btn>
+        <Btn highlighted @click="addFriend">Add</Btn>
+      </div>
+    </div>
   </modal>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import { required } from 'vuelidate/lib/validators'
 export default {
   name: 'AddFriendModal',
   data() {
     return {
       addFriendUsername: ''
     }
+  },
+  validations: {
+    addFriendUsername: { required }
   },
   computed: {
     ...mapState('auth', ['friends'])
@@ -47,14 +61,21 @@ export default {
   },
   methods: {
     ...mapActions('auth', ['toggleAddFriendModal', 'addToFriendsList']),
-    addFriend() {
+    async addFriend() {
       try {
-        console.log(this.addFriendUsername)
-        console.log(this.friends)
-        this.addToFriendsList(this.addFriendUsername)
-      } catch (error) {
+        await this.addToFriendsList(this.addFriendUsername)
         this.$toast.open({
-          message: '<i class="fas fa-times-circle"></i> Something went wrong.',
+          message: `<i class="fas fa-check-circle"></i> You successfully added ${this.addFriendUsername} to your friends list.`,
+          duration: 5000,
+          type: 'success',
+          position: 'top-right'
+        })
+        this.toggleAddFriendModal(false)
+      } catch (error) {
+        console.log(error.response)
+        this.$toast.open({
+          message:
+            '<i class="fas fa-times-circle"></i> This user does not exist.',
           duration: 5000,
           type: 'error',
           position: 'top-right'

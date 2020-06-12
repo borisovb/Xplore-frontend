@@ -42,5 +42,10 @@ export default ($axios) => ({
     return $axios.$delete(`/${resource}/${username}/wishlist/`, {
       data: { id }
     })
+  },
+  removeFriendFromFriendsList(username, friendUsername) {
+    return $axios.$delete(`/${resource}/${username}/friends/`, {
+      data: { username: friendUsername }
+    })
   }
 })

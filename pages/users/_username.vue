@@ -57,6 +57,13 @@
               </div>
             </div>
           </div>
+          <div
+            class="w-full flex items-center rounded-md bg-gray-700 hover:bg-gray-600 h-12 w-64 mb-2 cursor-pointer"
+          >
+            <span class="w-full text-center font-semibold cursor-pointer">
+              Change profile picture
+            </span>
+          </div>
         </div>
       </div>
       <div class="col-span-2">
