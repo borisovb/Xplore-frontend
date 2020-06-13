@@ -140,4 +140,7 @@ export const actions = {
   }
 }
 
-export const getters = {}
+export const getters = {
+  isFriend: (state) => (username) =>
+    state.friends.some((f) => f.user.username === username)
+}
