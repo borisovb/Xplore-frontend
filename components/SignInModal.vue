@@ -33,13 +33,10 @@
               type="text"
               placeholder="Username"
             />
+            <div v-if="!$v.username.$error">
+              <p class="text-red-500 text-xs italic mt-1">&nbsp;</p>
+            </div>
             <div v-show="$v.username.$error && $v.username.$dirty">
-              <p
-                v-if="!$v.username.required"
-                class="text-red-500 text-xs italic mt-1"
-              >
-                This field is required.
-              </p>
               <p
                 v-if="!$v.username.between"
                 class="text-red-500 text-xs italic mt-1"
@@ -59,6 +56,9 @@
               type="email"
               placeholder="Email"
             />
+            <div v-if="!$v.email.$error">
+              <p class="text-red-500 text-xs italic mt-1">&nbsp;</p>
+            </div>
             <div v-if="$v.email.$error && $v.email.$dirty">
               <p
                 v-if="!$v.email.required"
@@ -85,13 +85,10 @@
               type="password"
               placeholder="******************"
             />
+            <div v-if="!$v.password.$error">
+              <p class="text-red-500 text-xs italic mt-1">&nbsp;</p>
+            </div>
             <div v-if="$v.password.$error">
-              <p
-                v-if="!$v.password.required && $v.password.$dirty"
-                class="text-red-500 text-xs italic mt-1"
-              >
-                This field is required.
-              </p>
               <p
                 v-if="!$v.password.minLength"
                 class="text-red-500 text-xs italic mt-1"
@@ -111,13 +108,10 @@
               type="password"
               placeholder="******************"
             />
+            <div v-if="!$v.repeatPassword.$error">
+              <p class="text-red-500 text-xs italic mt-1">&nbsp;</p>
+            </div>
             <div v-if="$v.repeatPassword.$error && $v.repeatPassword.$dirty">
-              <p
-                v-if="!$v.repeatPassword.required"
-                class="text-red-500 text-xs italic mt-1"
-              >
-                This field is required.
-              </p>
               <p
                 v-if="!$v.repeatPassword.sameAsPassword"
                 class="text-red-500 text-xs italic mt-1"

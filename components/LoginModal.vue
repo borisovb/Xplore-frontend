@@ -32,6 +32,9 @@
               type="text"
               placeholder="Username"
             />
+            <div v-if="!$v.username.$error">
+              <p class="text-red-500 text-xs italic mt-1">&nbsp;</p>
+            </div>
             <div v-show="$v.username.$error && $v.username.$dirty">
               <p
                 v-if="!$v.username.required"
@@ -52,6 +55,9 @@
               type="password"
               placeholder="******************"
             />
+            <div v-if="!$v.password.$error">
+              <p class="text-red-500 text-xs italic mt-1">&nbsp;</p>
+            </div>
             <div v-if="$v.password.$error">
               <p
                 v-if="!$v.password.required && $v.password.$dirty"

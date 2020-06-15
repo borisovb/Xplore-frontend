@@ -31,7 +31,11 @@
         <AccountDropdown v-if="user !== null">
           <img
             class="w-8 h-8 rounded-full inline mx-2"
-            :src="user.profilePicture"
+            :src="
+              user.profilePicture
+                ? user.profilePicture
+                : require('~/assets/img/profile-pic.jpg')
+            "
           />
           {{ user.name }}
         </AccountDropdown>
@@ -44,17 +48,20 @@
     </nav>
     <div class="flex content-center flex-wrap mx-10 md:hidden">
       <div class="relative mx-auto w-full text-gray-800 max-h-full">
-        <input
-          class="bg-input w-full h-10 px-5 py-2 pr-16 rounded-full shadow-md text-sm focus:outline-none"
-          type="search"
-          placeholder="Search"
-        />
-        <button
-          type="submit"
-          class="absolute right-0 top-0 mt-2 mr-4 text-blue-500"
-        >
-          <i class="fas fa-search"></i>
-        </button>
+        <form @submit.prevent="search">
+          <input
+            v-model="searchQuery"
+            class="bg-input w-full h-10 px-5 py-2 pr-16 rounded-full shadow-md text-sm focus:outline-none"
+            type="search"
+            placeholder="Search"
+          />
+          <button
+            type="submit"
+            class="absolute right-0 top-0 mt-2 mr-4 text-blue-500"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
       </div>
     </div>
     <LoginModal v-if="loginModal"></LoginModal>
