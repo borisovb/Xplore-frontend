@@ -59,7 +59,7 @@
             >
               <div class="posts">
                 <p class="text-gray-500">{{ favorites.length }}</p>
-                <p class="text-m">Favorite</p>
+                <p class="text-m">Favorites</p>
               </div>
               <div class="followers">
                 <p class="text-gray-500">{{ wishlist.length }}</p>
@@ -74,6 +74,7 @@
           <div
             v-if="user.username === $store.state.auth.user.name"
             class="w-full flex items-center rounded-md bg-gray-700 hover:bg-gray-600 h-12 w-64 mb-2 cursor-pointer"
+            @click="showChangePictureModal"
           >
             <span class="w-full text-center font-semibold cursor-pointer">
               Change profile picture
@@ -111,15 +112,20 @@
         <GameCardsSlider v-if="wishlist.length >= 1" sm :games="wishlist" />
       </div>
     </div>
+    <ChangePictureModal
+      v-if="changePictureModal"
+      @changedProfilePic="changePicture"
+    ></ChangePictureModal>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 import GameCardsSlider from '~/components/GameCardsSlider'
+import ChangePictureModal from '~/components/ChangePictureModal'
 
 export default {
-  components: { GameCardsSlider },
+  components: { GameCardsSlider, ChangePictureModal },
   data() {
     return {
       user: { username: '', email: '' },
@@ -130,6 +136,7 @@ export default {
   },
   middleware: 'auth',
   computed: {
+    ...mapState('auth', ['changePictureModal']),
     ...mapGetters('auth', ['isFriend'])
   },
   async mounted() {
@@ -153,7 +160,17 @@ export default {
     }
   },
   methods: {
-    ...mapActions('auth', ['addToFriendsList', 'removeFromFriends'])
+    ...mapActions('auth', [
+      'addToFriendsList',
+      'removeFromFriends',
+      'toggleChangePictureModal'
+    ]),
+    showChangePictureModal() {
+      this.toggleChangePictureModal(true)
+    },
+    changePicture(imageUrl) {
+      this.user.profilePicture = imageUrl
+    }
   }
 }
 </script>

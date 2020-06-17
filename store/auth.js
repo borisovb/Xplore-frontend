@@ -8,7 +8,8 @@ const getDefaultState = () => {
     loginModal: false,
     signUpModal: false,
     friendsModal: false,
-    addFriendsModal: false
+    addFriendsModal: false,
+    changePictureModal: false
   }
 }
 
@@ -52,6 +53,12 @@ export const mutations = {
   SET_SIGNUP_MODAL(state, bool) {
     state.signUpModal = bool
   },
+  SET_CHANGE_PICTURE_MODAL(state, bool) {
+    state.changePictureModal = bool
+  },
+  SET_PROFILE_PICTURE(state, url) {
+    state.user.profilePicture = url
+  },
   RESET(state) {
     Object.assign(state, getDefaultState())
   },
@@ -85,6 +92,9 @@ export const actions = {
     }
 
     commit('SET_USER', accInfo)
+  },
+  changeProfilePic({ commit }, url) {
+    commit('SET_PROFILE_PICTURE', url)
   },
   logout({ commit }) {
     commit('RESET')
@@ -137,6 +147,9 @@ export const actions = {
   },
   toggleAddFriendModal({ commit }, bool) {
     commit('SET_ADD_FRIEND_MODAL', bool)
+  },
+  toggleChangePictureModal({ commit }, bool) {
+    commit('SET_CHANGE_PICTURE_MODAL', bool)
   }
 }
 

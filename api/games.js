@@ -14,7 +14,7 @@ export default ($axios) => ({
   search(searchQuery, platforms, genres, orederBy) {
     let url = `/${resource}/search?search=${searchQuery}`
     if (platforms.length >= 1) {
-      url += '&platforms='
+      url += '&parent_platforms='
       platforms.forEach((platform, index) => {
         url += `${platform}`
         if (index !== platforms.length - 1) {

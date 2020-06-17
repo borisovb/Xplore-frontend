@@ -43,5 +43,6 @@ module.exports = {
     opacity: ['hover'],
     backgroundColor: ['responsive', 'hover', 'focus', 'active']
   },
+  purge: { enabled: false },
   plugins: []
 }
