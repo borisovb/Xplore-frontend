@@ -40,17 +40,17 @@ background-color: #D8DBE2;
     transition-duration: 0.3s;
     transition-timing-function: ease-in;
   }
-  .slide-leave-active {
-    transition-duration: 0.3s;
-    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-  }
-  .slide-enter-to,
-  .slide-leave {
-    max-height: 200px;
-    overflow: hidden;
-  }
-  .slide-enter,
-  .slide-leave-to {
-    max-height: 0;
-    overflow: hidden;
-  }
+.slide-leave-active {
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+.slide-enter-to,
+.slide-leave {
+  max-height: 200px;
+  overflow: hidden;
+}
+.slide-enter,
+.slide-leave-to {
+  max-height: 0;
+  overflow: hidden;
+} 

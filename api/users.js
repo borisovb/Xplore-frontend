@@ -10,6 +10,13 @@ export default ($axios) => ({
   me() {
     return $axios.$get(`/${resource}/me`)
   },
+  changePicture(username, payload) {
+    return $axios.$patch(`/${resource}/${username}/profilepicture/`, payload, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+  },
   getUser(username) {
     return $axios.$get(`/${resource}/${username}`)
   },
